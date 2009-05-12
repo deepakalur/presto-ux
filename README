@@ -1,18 +1,27 @@
 A brief introduction to Presto Enteprise Mashup Platform:
 
-Presto (tm) is JackBe's Enterprise Mashup Platform. If you haven't used Presto you can download a full featured free developer edition from the Mashup Developer Community (MDC) at http://www.jackbe.com/dev.
+Presto (tm) is JackBe's Enterprise Mashup Platform. If you haven't used Presto you can download a full featured free
+developer edition from the Mashup Developer Community (MDC) at http://www.jackbe.com/dev.
 
-Using Presto, you can develop enterprise mashups. There are some key components to Presto that allow you to enhance, extend, share and reuse between Presto developers.
+Using Presto, you can develop enterprise mashups. There are some key components to Presto that allow you to enhance,
+extend, share and reuse between Presto developers.
 
-In Presto, you develop mashups using a dynamic declarative domain specific mashup language called Enterprise Mashup Markup Language (or EMML). EMML has been open sourced as part of the Open Mashup Alliance (OMA). You can find more details about the language and related open source information on the OMA website at http://www.openmashup.org.
+In Presto, you develop mashups using a dynamic declarative domain specific mashup language called Enterprise Mashup 
+Markup Language (or EMML). EMML has been open sourced as part of the Open Mashup Alliance (OMA). You can find more 
+details about the language and related open source information on the OMA website at http://www.openmashup.org.
 
 In Presto, EMML mashups can be developed in two ways:
 1. Using Presto Wires (tm), which is a browser-based visual mashup composer/editor
 2. Using Presto Mashup Studio (tm), which is an Eclipse-based IDE for developing EMML
 
-Presto also includes Mashlets, a framework for creating user interfaces for Mashups. Presto creates mashlets out of the box with a few clicks. However, you can write custom mashlets using your own code adhering to the Mashlet API and using JavaScript/HTML/Ajax/Flash. Mashlets in turn use several viewers to visualize and display data to the users. These data viewers can also be made reusable and shared with other users.
+Presto also includes Mashlets, a framework for creating user interfaces for Mashups. Presto creates mashlets out of the
+box with a few clicks. However, you can write custom mashlets using your own code adhering to the Mashlet API and using 
+JavaScript/HTML/Ajax/Flash. Mashlets in turn use several viewers to visualize and display data to the users. These data 
+viewers can also be made reusable and shared with other users.
 
-Wires uses the concept of Action Blocks, which are extensible components that one can write and add to Wires so that they become a reusable action block that all users in Wires can use. This is one way to extend the functionality of Wires and to allow users to reuse a block created by another user.
+Wires uses the concept of Action Blocks, which are extensible components that one can write and add to Wires so that 
+they become a reusable action block that all users in Wires can use. This is one way to extend the functionality of 
+Wires and to allow users to reuse a block created by another user.
 
 As you can see, there are a number of reusable artifacts that Presto users can create, share and reuse including:
 1. EMML Mashups, Macros and Templates
@@ -20,5 +29,5 @@ As you can see, there are a number of reusable artifacts that Presto users can c
 3. Data Viewers
 4. Wires Action Blocks
 
-This project, presto-ux (Presto User Extensions), was created to allow Presto users to share the above reusable artifacts. We hope you find this useful and will contribute your artifacts for others to reuse.
-
+This project, presto-ux (Presto User Extensions), was created to allow Presto users to share the above reusable 
+artifacts. We hope you find this useful and will contribute your artifacts for others to reuse.
