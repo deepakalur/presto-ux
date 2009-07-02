@@ -1,0 +1,33 @@
+<!-- This macro performs a union of any 5 inputs and creates a new XML document containing the inputs -->
+<macro name="Union">
+<emml-meta name="author">deepak.alur@jackbe.com</emml-meta>
+
+	<input name="input1" type="document" />
+        <input name="input2" type="document" />
+        <input name="input3" type="document" />
+        <input name="input4" type="document" />
+        <input name="input5" type="document"></input>
+
+        <presto-meta name="macrotype">user</presto-meta>
+        <presto-meta name="help">
+          <description>Performs a union of all the given inputs into a single output</description>
+          <parameters>
+            <parameter name="input1">Input document to include in the Union result</parameter>
+            <parameter name="input2">Input document to include in the Union result</parameter>
+            <parameter name="input3">Input document to include in the Union result</parameter>
+            <parameter name="input4">Input document to include in the Union result</parameter>
+            <parameter name="input5">Input document to include in the Union result</parameter>
+          </parameters>
+        </presto-meta>
+
+        <output name="result" type="document"/>
+        <constructor outputvariable="result">
+                <result>
+                {if (count($input1/*/*) = 0 ) then "" else $input1 }
+                {if (count($input2/*/*) = 0 ) then "" else $input2 }
+                {if (count($input3/*/*) = 0 ) then "" else $input3 }
+                {if (count($input4/*/*) = 0 ) then "" else $input4 }
+                {if (count($input5/*/*) = 0 ) then "" else $input5 }
+                </result>
+        </constructor>
+</macro>
