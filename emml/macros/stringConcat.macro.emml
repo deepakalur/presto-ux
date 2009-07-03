@@ -1,0 +1,14 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema ../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="sampleMacroFile">
+
+	<!--
+		This is a macro file that contains a macro that can be reused by
+		including it in emmls
+	-->
+	<macro name="append">
+		<input name="input" type="string" />
+		<output name="output" type="string" />
+		<assign fromexpr="string-join({$input},',')" outputvariable="output" />
+	</macro>
+</macros>
