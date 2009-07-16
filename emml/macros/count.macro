@@ -1,0 +1,21 @@
+<macros xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" 
+ 	 xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/ ../src/schemas/EMMLSpec.xsd" 
+ 	 xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="count" >
+	<macro name="NodeCounter">
+		<emml-meta name="author">mythri@jackbe.com</emml-meta>
+		<input name="xmlDoc" type="document" />
+		<input name="tag" type="string" />
+		<output name="count" type="number" />
+		<display message="from macro:" variable="xmlDoc"/>
+		<display message="from macro:" variable="tag"/>
+
+		<script type="text/javascript" inputvariables="tag,xmlDoc"
+			outputvariable="count">
+		<![CDATA[
+			print(tag);
+            count = xmlDoc[tag].length();
+            print(count);
+		]]>
+		</script>
+	</macro>
+</macros>
