@@ -1,0 +1,9 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/ ../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="nsRemover">
+	<macro name="StripNS">
+		<input name="xmlDoc" type="document" />
+		<output name="noNSdoc" type="document" />
+		<xslt script="nsStrip.xsl" inputvariable="xmlDoc" outputvariable="noNSdoc" />
+	</macro>
+</macros>

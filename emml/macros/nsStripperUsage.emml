@@ -1,0 +1,13 @@
+<mashup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/ ../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" xmlns:macro="http://www.jackbe.com/2008-03-01/EMMLMacro"
+	name="nsStripperUsage">
+	<operation name="invoke">
+		<variable name="xmlDoc" type="document" />
+		<output name="noNSdoc" type="document" />
+		<invoke service="TechCrunchRSS" operation="getFeed"
+			outputvariable="xmlDoc" />
+		<include file="nsRemover.emml-macros" />
+		<macro:StripNS xmlDoc="$xmlDoc" outputvariable="noNSdoc" />
+	</operation>
+</mashup>

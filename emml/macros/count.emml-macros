@@ -1,0 +1,20 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="count">
+
+	<macro name="NodeCounter">
+		<emml-meta name="author">Mythri(mythri@jackbe.com)
+		</emml-meta>
+
+		<input name="xmlDoc" type="document" />
+		<input name="tag" type="string" />
+		<output name="count" type="number" />
+		<if condition="$tag != ''">
+			<assign fromexpr="count($xmlDoc/{$tag})" outputvariable="count" />
+			<display message="count inside count macro:" variable="count" />
+			<else>
+				<display message="Tag cannot be empty. Please enter a valid tag to get the count" />
+			</else>
+		</if>
+	</macro>
+</macros>

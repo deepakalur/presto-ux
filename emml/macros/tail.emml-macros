@@ -1,0 +1,42 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" xmlns:macro="http://www.jackbe.com/2008-03-01/EMMLMacro"
+	name="tail">
+
+	<include file="count.emml-macros" />
+
+	<macro name="FromBottom" xmlns:fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
+
+		<emml-meta name="author">Mythri(mythri@jackbe.com)
+		</emml-meta>
+
+		<!-- Number of required nodes from end of the doc -->
+		<input name="nodes" type="number" />
+
+		<!-- Doc that has to be truncated -->
+		<input name="xmlDoc" type="document" />
+
+		<!-- Truncated doc as per given inputs -->
+		<output name="truncatedDoc" type="document" />
+
+		<!-- Get the repeating node from the given input xmlDoc -->
+		<variable name="collectionroot" type="string" />
+		<assign outputvariable="collectionroot" fromexpr="fn:infergroupXPath($xmlDoc)" />
+		<display message="collectionroot in tail macro:" variable="collectionroot" />
+		<variable name="count" type="number" />
+
+		<macro:NodeCounter xmlDoc="$xmlDoc" tag="$collectionroot"
+			outputvariable="count" />
+		<display message="Count inside tail macro:" variable="count" />
+		<if condition="not ($xmlDoc instance of xs:string or $xmlDoc=null)">
+			<if condition="$collectionroot !='' ">
+				<variable name="dynamicrecordexpr" type="string" />
+				<template expr="{$collectionroot}[position() = {$count}-{$nodes}+1 to {$count}]"
+					outputvariable="dynamicrecordexpr" />
+				<filter inputvariable="xmlDoc" filterexpr="$dynamicrecordexpr"
+					outputvariable="$truncatedDoc" />
+			</if>
+
+		</if>
+	</macro>
+</macros>

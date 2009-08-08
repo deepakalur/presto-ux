@@ -1,0 +1,29 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="head">
+
+	<macro name="FromTop" xmlns:fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
+		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
+
+		<!-- Number of required nodes from the beginning of the input doc -->
+		<input name="nodes" type="number" />
+
+		<!-- Doc that has to be truncated -->
+		<input name="xmlDoc" type="document" />
+
+		<!-- Truncated doc as per given inputs -->
+		<output name="truncatedDoc" type="document" />
+
+		<if condition="not ($xmlDoc instance of xs:string or $xmlDoc=null)">
+			<variable name="collectionroot" type="string" default="" />
+			<assign outputvariable="collectionroot" fromexpr="fn:infergroupXPath($xmlDoc)" />
+			<if condition="$collectionroot !='' ">
+				<variable name="dynamicrecordexpr" type="string" />
+				<template expr="{$collectionroot}[position() = 1 to $nodes ]"
+					outputvariable="dynamicrecordexpr" />
+				<filter inputvariable="xmlDoc" filterexpr="$dynamicrecordexpr"
+					outputvariable="$truncatedDoc" />
+			</if>
+		</if>
+	</macro>
+</macros>
