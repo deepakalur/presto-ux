@@ -1,6 +1,0 @@
-<macros xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" 
- 	 xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/ ../src/schemas/EMMLSpec.xsd" 
- 	 xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" 
- 	 name = "strToDoc"> 
- 
- </macros>
