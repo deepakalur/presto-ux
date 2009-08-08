@@ -1,0 +1,15 @@
+<mashup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/ ../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" xmlns:macro="http://www.jackbe.com/2008-03-01/EMMLMacro"
+	name="emmlUsingMacroFile">
+
+	<!--
+		This EMML demonstrates the usage of the concatRepeatingNode macro
+	-->
+	<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
+	
+	<output name="appendResult" type="string" />
+	<include file="concatRepeatingNode.emml-macros" />
+	<invoke operation="getFeed" service="AjaxianRSS" outputvariable="result"  />
+	<macro:append input="$result//*:item/*:title" output="appendResult" />
+</mashup>

@@ -1,0 +1,16 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema ../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="sampleMacroFile">
+
+	<!--
+		This macro takes values from a specific tag of a doc and returns a
+		string formed by concatenation of all the values of the tag as strings
+	-->
+	<macro name="append">
+		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
+	
+		<input name="input" type="string" />
+		<output name="output" type="string" />
+		<assign fromexpr="string-join({$input},',')" outputvariable="output" />
+	</macro>
+</macros>
