@@ -11,13 +11,14 @@
 
 		<invoke service="YahooHotJobsFilter" operation="getFeed"
 			inputvariables="'Java'" outputvariable="xmlDoc" />
+		
 		<variable name="tag" type="string" default="/*:rss/*:channel/*:item/*:date" />
 
 		<include file="count.emml-macros" />
 		
 		<macro:NodeCounter xmlDoc="$xmlDoc" tag="$tag"
 			outputvariable="count" />
-		<display message="Count Number of nodes:" variable="count" />
+		<display message="Number of nodes:" variable="count" />
 
 	</operation>
 </mashup>
