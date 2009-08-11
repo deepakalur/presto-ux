@@ -4,6 +4,16 @@
 	<macro name="StripNS">
 		<input name="xmlDoc" type="document" />
 		<output name="noNSdoc" type="document" />
+
+		<presto-meta name="macrotype">user</presto-meta>
+		<presto-meta name="help">
+			<description>Returns the document with namespaces stripped</description>
+			<parameters>
+				<parameter name="xmlDoc">Document from which namespaces are
+					to be stripped</parameter>
+			</parameters>
+		</presto-meta>
+
 		<xslt script="nsStrip.xsl" inputvariable="xmlDoc" outputvariable="noNSdoc" />
 	</macro>
 </macros>
