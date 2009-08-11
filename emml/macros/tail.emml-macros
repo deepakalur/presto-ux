@@ -7,8 +7,7 @@
 
 	<macro name="FromBottom" xmlns:fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
 
-		<emml-meta name="author">Mythri(mythri@jackbe.com)
-		</emml-meta>
+		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
 
 		<input name="nodes" type="number" />
 		<input name="xmlDoc" type="document" />
@@ -32,6 +31,7 @@
 			<variable name="collectionroot" type="string" />
 			<variable name="count" type="number" />
 		</variables>
+		
 		<assign outputvariable="collectionroot" fromexpr="fn:infergroupXPath($xmlDoc)" />
 
 		<macro:NodeCounter xmlDoc="$xmlDoc" tag="$collectionroot"
