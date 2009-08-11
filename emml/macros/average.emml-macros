@@ -1,0 +1,25 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="average">
+
+	<macro name="Average">
+		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
+
+		<!-- Contains the average of the data in the specified tag  -->
+		<output name="average" type="number" />
+
+		<input name="xmlDoc" type="document" />
+		<input name="tag" type="string" />
+
+		<presto-meta name="macrotype">user</presto-meta>
+		<presto-meta name="help">
+			<description>Finds the average of the data present in the specified tag</description>
+			<parameters>
+				<parameter name="xmlDoc">Document from which data of the specified tag has to be extracted</parameter>
+				<parameter name="tag">Path to that tag from which data has to be picked</parameter>
+			</parameters>
+		</presto-meta>
+
+		<assign fromexpr="avg($xmlDoc/{$tag})" outputvariable="average" />
+	</macro>
+</macros>

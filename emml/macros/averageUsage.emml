@@ -1,0 +1,49 @@
+<mashup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" 
+	xmlns:macro="http://www.jackbe.com/2008-03-01/EMMLMacro"
+	xmlns:ser="http://www.xignite.com/services/"
+	name="averageUsage">
+
+	<operation name="invoke">
+
+		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
+
+		<!-- Contains the average of the data in the specified tag  -->
+		<output name="average" type="number" default="0" />
+
+		<variables>
+			<!-- Doc from which data of the specified tag has to be extracted -->
+			<variable name="xmlDoc" type="document" />
+			<!-- path of the tag from which data has to be picked -->
+			<variable name="tag" type="string" />
+		</variables>
+
+		<constructor outputvariable="parameters">
+			<ser:GetTopGainers xmlns:ser="http://www.xignite.com/services/" />
+		</constructor>
+
+		<constructor outputvariable="XIgniteGetQuotesHeader">
+			<header>
+				<serviceHeader>
+					<ser:Header xmlns:ser="http://www.xignite.com/services/"
+						xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+						<ser:Username>john.crupi@jackbe.com
+						</ser:Username>
+						<ser:Password />
+						<ser:Tracer />
+					</ser:Header>
+				</serviceHeader>
+			</header>
+		</constructor>
+		<invoke service="XIgniteGetQuotes" operation="GetTopGainers"
+			inputvariables="parameters" outputvariable="xmlDoc" header="XIgniteGetQuotesHeader" />
+
+		<assign literal="/*:GetTopGainersResponse/*:GetTopGainersResult/*:Top/*:Last"
+			outputvariable="tag" />
+
+		<include file="average.emml-macros" />
+		<macro:Average xmlDoc="$xmlDoc" tag="$tag"
+			outputvariable="average" />
+	</operation>
+</mashup>
