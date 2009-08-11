@@ -3,15 +3,23 @@
 	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="count">
 
 	<macro name="NodeCounter">
-		<emml-meta name="author">Mythri(mythri@jackbe.com)
-		</emml-meta>
+		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
 
 		<input name="xmlDoc" type="document" />
 		<input name="tag" type="string" />
 		<output name="count" type="number" />
+
+		<presto-meta name="macrotype">user</presto-meta>
+		<presto-meta name="help">
+			<description>Finds the count of the nodes in a document</description>
+			<parameters>
+				<parameter name="xmlDoc">Document for which node count is required</parameter>
+				<parameter name="tag">Path to that tag whose count is required</parameter>
+			</parameters>
+		</presto-meta>
+
 		<if condition="$tag != ''">
 			<assign fromexpr="count($xmlDoc/{$tag})" outputvariable="count" />
-			<display message="count inside count macro:" variable="count" />
 			<else>
 				<display message="Tag cannot be empty. Please enter a valid tag to get the count" />
 			</else>
