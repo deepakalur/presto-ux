@@ -8,8 +8,19 @@
 	-->
 	<macro name="append">
 		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
-	
+
 		<input name="input" type="string" />
+
+		<presto-meta name="macrotype">user</presto-meta>
+		<presto-meta name="help">
+			<description>Returns the concatenated string of all the data
+				inside a repeating node</description>
+			<parameters>
+				<parameter name="input">Path to the repeating node in the
+					document</parameter>
+			</parameters>
+		</presto-meta>
+
 		<output name="output" type="string" />
 		<assign fromexpr="string-join({$input},',')" outputvariable="output" />
 	</macro>
