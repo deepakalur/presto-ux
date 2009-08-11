@@ -6,8 +6,8 @@
 	<operation name="invoke">
 		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
 
-		<output name="headDoc" type="document" />
 		<input name="headCount" type="number" default="2" />
+		<output name="headDoc" type="document" />
 
 		<invoke service="YahooHotJobsFilter" operation="getFeed"
 			inputvariables="'Java'" outputvariable="result" />
