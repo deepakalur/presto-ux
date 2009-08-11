@@ -5,14 +5,20 @@
 	<macro name="FromTop" xmlns:fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
 		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
 
-		<!-- Number of required nodes from the beginning of the input doc -->
 		<input name="nodes" type="number" />
-
-		<!-- Doc that has to be truncated -->
 		<input name="xmlDoc" type="document" />
 
 		<!-- Truncated doc as per given inputs -->
 		<output name="truncatedDoc" type="document" />
+
+		<presto-meta name="macrotype">user</presto-meta>
+		<presto-meta name="help">
+			<description>Returns the first 'n' nodes in document order</description>
+			<parameters>
+				<parameter name="xmlDoc">Document from which nodes are to be extracted</parameter>
+				<parameter name="nodes">Number of required nodes from the beginning of the input document</parameter>
+			</parameters>
+		</presto-meta>
 
 		<if condition="not ($xmlDoc instance of xs:string or $xmlDoc=null)">
 			<variable name="collectionroot" type="string" default="" />
