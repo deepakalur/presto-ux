@@ -1,6 +1,0 @@
-<macro name="append">
-		<input name="input" type="string" />
-		<output name="output" type="string" />
-		<assign fromexpr="string-join({$input},',')" outputvariable="output" />
-	</macro>
-
