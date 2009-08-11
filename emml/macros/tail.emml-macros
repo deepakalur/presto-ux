@@ -10,33 +10,42 @@
 		<emml-meta name="author">Mythri(mythri@jackbe.com)
 		</emml-meta>
 
-		<!-- Number of required nodes from end of the doc -->
 		<input name="nodes" type="number" />
-
-		<!-- Doc that has to be truncated -->
 		<input name="xmlDoc" type="document" />
 
 		<!-- Truncated doc as per given inputs -->
 		<output name="truncatedDoc" type="document" />
 
+		<presto-meta name="macrotype">user</presto-meta>
+		<presto-meta name="help">
+			<description>Returns the last 'n' nodes in document order</description>
+			<parameters>
+				<parameter name="xmlDoc">Document from which nodes are to
+					be extracted</parameter>
+				<parameter name="nodes">Number of nodes required from the
+					end of the input document</parameter>
+			</parameters>
+		</presto-meta>
+
 		<!-- Get the repeating node from the given input xmlDoc -->
-		<variable name="collectionroot" type="string" />
+		<variables>
+			<variable name="collectionroot" type="string" />
+			<variable name="count" type="number" />
+		</variables>
 		<assign outputvariable="collectionroot" fromexpr="fn:infergroupXPath($xmlDoc)" />
-		<display message="collectionroot in tail macro:" variable="collectionroot" />
-		<variable name="count" type="number" />
 
 		<macro:NodeCounter xmlDoc="$xmlDoc" tag="$collectionroot"
 			outputvariable="count" />
-		<display message="Count inside tail macro:" variable="count" />
+
 		<if condition="not ($xmlDoc instance of xs:string or $xmlDoc=null)">
 			<if condition="$collectionroot !='' ">
 				<variable name="dynamicrecordexpr" type="string" />
-				<template expr="{$collectionroot}[position() = {$count}-{$nodes}+1 to {$count}]"
+				<template
+					expr="{$collectionroot}[position() = {$count}-{$nodes}+1 to {$count}]"
 					outputvariable="dynamicrecordexpr" />
 				<filter inputvariable="xmlDoc" filterexpr="$dynamicrecordexpr"
 					outputvariable="$truncatedDoc" />
 			</if>
-
 		</if>
 	</macro>
 </macros>

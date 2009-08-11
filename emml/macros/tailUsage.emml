@@ -8,7 +8,7 @@
 		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
 
 		<output name="tailDoc" type="document" />
-		<input name="tailCount" type="number" default="3" />
+		<input name="tailCount" type="number" default="1" />
 
 		<invoke service="YahooHotJobsFilter" operation="getFeed"
 			inputvariables="'Java'" outputvariable="result" />
