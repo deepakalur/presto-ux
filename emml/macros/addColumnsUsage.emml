@@ -1,0 +1,43 @@
+<mashup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
+	xmlns:ser="http://www.xignite.com/services/" xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema"
+	xmlns:presto="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions"
+	xmlns:macro="http://www.jackbe.com/2008-03-01/EMMLMacro" name="addColumnsUsage">
+	<operation name="invoke">
+		<output name="doc" type="document" />
+
+		<constructor outputvariable="parameters">
+			<ser:GetTopMovers xmlns:ser="http://www.xignite.com/services/" />
+		</constructor>
+
+		<constructor outputvariable="XIgniteGetQuotesHeader">
+			<header>
+				<serviceHeader>
+					<ser:Header xmlns:ser="http://www.xignite.com/services/"
+						xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+						<ser:Username>john.crupi@jackbe.com
+						</ser:Username>
+						<ser:Password />
+						<ser:Tracer />
+					</ser:Header>
+				</serviceHeader>
+			</header>
+		</constructor>
+		<invoke service="XIgniteGetQuotes" operation="GetTopMovers"
+			inputvariables="parameters" outputvariable="result" header="XIgniteGetQuotesHeader" />
+
+		<include file="addColumns.emml-macros" />
+
+		<!--
+			'lhs' should be an element that contains numeric value and is a child
+			of the repeating node. 'rhs' should also be an element that contains
+			numeric value and is child of the same repeating node at the same
+			level as 'lhs'. 'nodeName' is the name of the new element that the
+			user wants to add to the document. Node names inside the repeating
+			element can be directly passed as inputs to lhs and rhs.
+		-->
+		<macro:Add xmlDoc="$result" lhs="Last" rhs="Change"
+			nodeName="AddedElement" outputvariable="doc"></macro:Add>
+
+	</operation>
+</mashup>
