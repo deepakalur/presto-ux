@@ -1,0 +1,65 @@
+<macros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
+	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="multiplyColumns">
+
+	<macro name="Divide" xmlns:presto="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
+
+		<output name="doc" type="document" />
+		<input name="xmlDoc" type="document" />
+		<input name="lhs" type="string" />
+		<input name="rhs" type="string" />
+		<input name="nodeName" type="string" default="Result" />
+
+		<presto-meta name="macrotype">user</presto-meta>
+		<presto-meta name="help">
+			<description>Divides two selected input elements and creates/inserts a new element with the result.</description>
+			<parameters>
+				<parameter name="xmlDoc">Document to which nodes have to be added</parameter>
+				<parameter name="lhs">Name of the node that contains numeric data</parameter>
+				<parameter name="rhs">Name of the other node that contains numeric data</parameter>
+				<parameter name="nodeName">Name of the new node that has to be added.</parameter>
+			</parameters>
+		</presto-meta>
+
+		<assign fromvariable="xmlDoc" outputvariable="doc" />
+
+		<variable name="repeatingElement" type="string" />
+		<assign outputvariable="repeatingElement" fromexpr="presto:infergroupXPath($doc)" />
+
+		<if condition="$repeatingElement != ''">
+			<script type="text/javascript" inputvariables="doc,repeatingElement,nodeName"
+				outputvariable="doc">
+			<![CDATA[ 
+				var array; 
+				var re = repeatingElement.substring(repeatingElement.lastIndexOf("/*:")+3);
+				eval('array = doc..*::' + re); 
+				var count = 0; 
+				for each(var record in array){ 
+					if(record.name().uri){
+						default xml namespace =	record.name().uri; 
+					} 
+					record[nodeName] = ""; 
+					default xml namespace =	""; 
+				} 
+			]]> 
+			</script>
+
+			<variable name="divide" type="number" />
+			<foreach items="$doc/{$repeatingElement}" variable="var">
+				<if
+					condition="string($var//*:{$lhs}/number() )!='NaN' and string($var//*:{$rhs}/number())!='NaN'">
+					<assign fromexpr="$var//*:{$lhs}/number() div $var//*:{$rhs}/number()"
+						outputvariable="divide" />
+					<assign fromvariable="divide" toexpr="$var//*:{$nodeName}" />
+					<else condition="true()">
+						<display
+							message="Arithmetic operations can not be performed on non-numeric nodes." />
+					</else>
+				</if>
+			</foreach>
+			<else>
+				<display message="No repeating element in the document to add the new node" />
+			</else>
+		</if>
+	</macro>
+</macros>
