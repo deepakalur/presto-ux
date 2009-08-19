@@ -27,22 +27,9 @@
 		<assign outputvariable="repeatingElement" fromexpr="presto_fn:infergroupXPath($doc)" />
 
 		<if condition="$repeatingElement != ''">
-			<script type="text/javascript" inputvariables="doc,repeatingElement,nodeName"
-				outputvariable="doc">
-			<![CDATA[ 
-				var array; 
-				var re = repeatingElement.substring(repeatingElement.lastIndexOf("/*:")+3);
-				eval('array = doc..*::' + re); 
-				var count = 0; 
-				for each(var record in array){ 
-					if(record.name().uri){
-						default xml namespace =	record.name().uri; 
-					} 
-					record[nodeName] = ""; 
-					default xml namespace =	""; 
-				} 
-			]]> 
-			</script>
+			<annotate variable="doc" expr="$repeatingElement">
+        		element { QName (namespace-uri($doc/*), $nodeName) } {}
+    		</annotate>
 
 			<variable name="product" type="number" />
 			<foreach items="$doc/{$repeatingElement}" variable="var">

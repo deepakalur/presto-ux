@@ -12,12 +12,17 @@
 
 		<presto-meta name="macrotype">user</presto-meta>
 		<presto-meta name="help">
-			<description>Creates a new node and updates its value with the sum of the values in the 2 given input nodes</description>
+			<description>Creates a new node and updates its value with the
+				sum of the values in the 2 given input nodes</description>
 			<parameters>
-				<parameter name="xmlDoc">Document to which nodes have to be addded</parameter>
-				<parameter name="lhs">Name of the node that contains numeric data</parameter>
-				<parameter name="rhs">Name of the other node that contains numeric data</parameter>
-				<parameter name="nodeName">Name of the new node that has to be added</parameter>
+				<parameter name="xmlDoc">Document to which nodes have to be
+					addded</parameter>
+				<parameter name="lhs">Name of the node that contains numeric
+					data</parameter>
+				<parameter name="rhs">Name of the other node that contains
+					numeric data</parameter>
+				<parameter name="nodeName">Name of the new node that has to be
+					added</parameter>
 			</parameters>
 		</presto-meta>
 
@@ -27,22 +32,9 @@
 		<assign outputvariable="repeatingElement" fromexpr="presto_fn:infergroupXPath($doc)" />
 
 		<if condition="$repeatingElement != ''">
-			<script type="text/javascript" inputvariables="doc,repeatingElement,nodeName"
-				outputvariable="doc">
-			<![CDATA[ 
-				var array; 
-				var re = repeatingElement.substring(repeatingElement.lastIndexOf("/*:")+3);
-				eval('array = doc..*::' + re); 
-				var count = 0; 
-				for each(var record in array){ 
-					if(record.name().uri){
-						default xml namespace =	record.name().uri; 
-					} 
-					record[nodeName] = ""; 
-					default xml namespace =	""; 
-				} 
-			]]> 
-			</script>
+			<annotate variable="doc" expr="$repeatingElement">
+        		element { QName (namespace-uri($doc/*), $nodeName) } {}
+    		</annotate>
 
 			<variable name="sum" type="number" />
 			<foreach items="$doc/{$repeatingElement}" variable="var">
