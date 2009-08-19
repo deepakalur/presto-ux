@@ -5,7 +5,7 @@
 
 	<include file="count.emml-macros" />
 
-	<macro name="FromBottom" xmlns:fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
+	<macro name="FromBottom" xmlns:presto_fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
 
 		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
 
@@ -32,7 +32,7 @@
 			<variable name="count" type="number" />
 		</variables>
 		
-		<assign outputvariable="collectionroot" fromexpr="fn:infergroupXPath($xmlDoc)" />
+		<assign outputvariable="collectionroot" fromexpr="presto_fn:infergroupXPath($xmlDoc)" />
 
 		<macro:NodeCounter xmlDoc="$xmlDoc" tag="$collectionroot"
 			outputvariable="count" />

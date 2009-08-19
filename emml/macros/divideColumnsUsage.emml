@@ -1,7 +1,6 @@
 <mashup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
 	xmlns:ser="http://www.xignite.com/services/" xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema"
-	xmlns:presto="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions"
 	xmlns:macro="http://www.jackbe.com/2008-03-01/EMMLMacro" name="divideColumnsUsage">
 	<operation name="invoke">
 		<output name="doc" type="document" />

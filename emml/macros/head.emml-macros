@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
 	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="head">
 
-	<macro name="FromTop" xmlns:fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
+	<macro name="FromTop" xmlns:presto_fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
 		<emml-meta name="author">Mythri(mythri@jackbe.com)</emml-meta>
 
 		<input name="nodes" type="number" />
@@ -22,7 +22,7 @@
 
 		<if condition="not ($xmlDoc instance of xs:string or $xmlDoc=null)">
 			<variable name="collectionroot" type="string" default="" />
-			<assign outputvariable="collectionroot" fromexpr="fn:infergroupXPath($xmlDoc)" />
+			<assign outputvariable="collectionroot" fromexpr="presto_fn:infergroupXPath($xmlDoc)" />
 			<if condition="$collectionroot !='' ">
 				<variable name="dynamicrecordexpr" type="string" />
 				<template expr="{$collectionroot}[position() = 1 to $nodes ]"

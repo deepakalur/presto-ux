@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://www.jackbe.com/2008-03-01/EMMLSchema/../src/schemas/EMMLSpec.xsd"
 	xmlns="http://www.jackbe.com/2008-03-01/EMMLSchema" name="multiplyColumns">
 
-	<macro name="Divide" xmlns:presto="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
+	<macro name="Divide" xmlns:presto_fn="java:com.jackbe.jbp.jems.client.EMMLPrestoFunctions">
 
 		<output name="doc" type="document" />
 		<input name="xmlDoc" type="document" />
@@ -24,7 +24,7 @@
 		<assign fromvariable="xmlDoc" outputvariable="doc" />
 
 		<variable name="repeatingElement" type="string" />
-		<assign outputvariable="repeatingElement" fromexpr="presto:infergroupXPath($doc)" />
+		<assign outputvariable="repeatingElement" fromexpr="presto_fn:infergroupXPath($doc)" />
 
 		<if condition="$repeatingElement != ''">
 			<script type="text/javascript" inputvariables="doc,repeatingElement,nodeName"
@@ -57,7 +57,7 @@
 					</else>
 				</if>
 			</foreach>
-			<else>
+			<else condition="true()">
 				<display message="No repeating element in the document to add the new node" />
 			</else>
 		</if>
